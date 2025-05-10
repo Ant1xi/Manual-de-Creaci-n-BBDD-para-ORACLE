@@ -1,0 +1,175 @@
+:root {
+  --bg: #0a0a0f;
+  --card: #131320;
+  --text: #e0e0ff;
+  --accent-green: #00ff99;
+  --accent-purple: #c084fc;
+  --border: #2a2a40;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 2em 1em;
+  background: linear-gradient(45deg, var(--accent-purple), var(--accent-green));
+  color: #000;
+}
+
+.subtitle {
+  color: #000;
+  font-weight: 600;
+  margin-top: 0.5em;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2em 1em;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-purple);
+  border-radius: 10px;
+  padding: 1.5em;
+  margin-bottom: 2em;
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.1);
+}
+
+h2 {
+  color: var(--accent-green);
+}
+
+.code-block {
+  background-color: #1a1a2e;
+  border: 1px solid #444;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-top: 1em;
+}
+
+pre {
+  margin: 0.5em 0;
+  font-size: 0.9em;
+  color: var(--accent-purple);
+  overflow: auto; /* aquí el cambio */
+  max-height: 500px; /* opcional: limita la altura visible */
+}
+
+
+
+.copy-btn {
+  background-color: var(--accent-green);
+  color: #000;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: #00e68a;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  color: #666;
+  border-top: 1px solid var(--border);
+}
+
+
+nav {
+  background-color: #1a1a2e;
+  padding: 1em;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 1em;
+  color: var(--accent-purple);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent-green);
+}
+
+
+/* Implementacion para que quede bonita la barra horixontal ya que estamos */
+
+/* Scrollbar para bloques de código */
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: #1a1a2e; /* fondo igual al bloque */
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: var(--accent-purple); /* color de la barra */
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-green); /* cambia al pasar el ratón */
+}
+
+/* Botono para volver arriba */
+#topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent-purple);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: none;
+}
+
+#topBtn:hover {
+  background: var(--accent-green);
+}
+
+
+
+/* Transición suave entre páginas */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+.card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+

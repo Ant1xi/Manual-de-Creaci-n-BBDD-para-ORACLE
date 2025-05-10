@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Usuario - MariaDB a Oracle</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="crear_usuario.html">Crear Usuario</a>
+      <a href="droptables.html">Drop Tables</a>
+      <a href="schema.html">Schema</a>
+      <a href="data.html">Data</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>👤 Crear Usuario</h2>
+
+        <p>
+          En MariaDB, crear un usuario es bastante directo. Te dan algo como
+          esto:
+        </p>
+
+        <pre><code class="sql">
+-- Desde root
+CREATE DATABASE company_db;
+
+CREATE USER 'company'@localhost IDENTIFIED BY 'company';
+
+GRANT ALL PRIVILEGES ON company_db.* TO 'company'@localhost;
+        </code></pre>
+
+        <p>
+          Pero en Oracle, especialmente desde la versión 12c, hay algunos
+          detalles importantes que cambian el enfoque.
+        </p>
+
+        <h3>📘 ¿Qué es Oracle 12c y el entorno multitenant?</h3>
+        <p>
+          Oracle 12c introdujo una arquitectura llamada
+          <strong>multitenant</strong>. En lugar de tener una base de datos por
+          aplicación, tienes una única base de datos contenedora (CDB) que puede
+          alojar múltiples bases de datos lógicas llamadas <em>PDBs</em>. Por
+          eso, si creas usuarios directamente en el contenedor principal, Oracle
+          exige que el nombre empiece con <code>C##</code>.
+        </p>
+
+        <h3>📦 ¿Qué es un Tablespace?</h3>
+        <p>
+          En Oracle, un <strong>tablespace</strong> es donde se almacenan
+          físicamente los objetos como tablas o índices. A cada usuario se le
+          asigna uno y se le da una cuota de espacio para trabajar.
+        </p>
+
+        <p>El equivalente a lo anterior en Oracle sería:</p>
+
+        <pre><code class="sql">
+CREATE USER C##COMPANY2 IDENTIFIED BY company2;
+
+GRANT CONNECT, RESOURCE TO C##COMPANY2;
+
+ALTER USER C##COMPANY2 DEFAULT TABLESPACE USERS;
+
+ALTER USER C##COMPANY2 QUOTA UNLIMITED ON USERS;
+        </code></pre>
+
+        <p>
+          Esto crea el usuario con permisos y espacio asignado en Oracle.
+          Recuerda que si tu entorno no es multitenant, el prefijo
+          <code>C##</code> puede no ser obligatorio.
+        </p>
+
+        <button class="copy-btn">📋 Copiar código Oracle</button>
+
+    </main>
+    <button id="topBtn" title="Volver arriba">⬆️</button>
+    <footer>
+      <p>&copy; 2025 - Antonio Castro Guerrero</p>
+    </footer>
+  </body>
+</html>

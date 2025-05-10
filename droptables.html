@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop Tables - MariaDB a Oracle</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="crear_usuario.html">Crear Usuario</a>
+      <a href="droptables.html">Drop Tables</a>
+      <a href="schema.html">Schema</a>
+      <a href="data.html">Data</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>🗑️ Drop de Tablas</h2>
+
+        <p>
+          Esta parte fue sencilla. En MariaDB simplemente se eliminaban las
+          tablas si existían:
+        </p>
+
+        <pre><code class="sql">
+DROP TABLE order_items;  
+DROP TABLE orders;
+DROP TABLE inventories;
+DROP TABLE products;
+DROP TABLE product_categories;
+DROP TABLE warehouses;
+DROP TABLE employees;
+DROP TABLE contacts;
+DROP TABLE customers;
+DROP TABLE locations;
+DROP TABLE countries;
+DROP TABLE regions;
+        </code></pre>
+
+        <p>
+          Oracle usa exactamente la misma sintaxis, por lo que no fue necesario
+          modificar nada. Aun así, hay un detalle útil:
+        </p>
+
+        <p>
+          Si una tabla tiene claves foráneas, puede que tengas que usar
+          <code>CASCADE CONSTRAINTS</code> para que se elimine sin error:
+        </p>
+
+        <pre><code class="sql">
+DROP TABLE orders CASCADE CONSTRAINTS;
+        </code></pre>
+
+        <button class="copy-btn">📋 Copiar todo</button>
+      </section>
+    </main>
+    <button id="topBtn" title="Volver arriba">⬆️</button>
+    <footer>
+      <p>&copy; 2025 - Antonio Castro Guerrero</p>
+    </footer>
+  </body>
+</html>
